@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using CNMB_v4.Data;
 using Repository;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Models;
 
-namespace CNMB_v4.Data
+namespace Repository
 {
     public class CNMBContext : DbContext
     {

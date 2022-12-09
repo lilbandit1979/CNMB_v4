@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CNMB_v4.Data;
+
 using Models;
+using Repository;
 
 namespace CNMB_v4.Controllers
 {
