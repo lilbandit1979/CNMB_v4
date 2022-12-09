@@ -16,8 +16,8 @@ namespace CNMB_v4.Data
 
         public DbSet<Models.Teacher> Teacher { get; set; } = default!;
 
-        public DbSet<Models.School> School { get; set; }
+        public DbSet<Models.School> School { get; set; }=default!;
 
-        public DbSet<Models.Team> Team { get; set; }
+        public DbSet<Models.Team> Team { get; set; } = default!;
     }
 }
