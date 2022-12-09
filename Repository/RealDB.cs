@@ -9,10 +9,10 @@ namespace Repository
 {
     public class RealDB : IRepository
     {
-        CNMBContext _db;
-        public RealDB (CNMBContext db) //constructor
+        CNMBContext _db = default!;
+        public RealDB () //constructor
         {
-            _db = db;
+            //_db = db; come back to this
         }
 
         public void AddSchool(School school)

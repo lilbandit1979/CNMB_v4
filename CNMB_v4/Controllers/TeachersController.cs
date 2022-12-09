@@ -16,6 +16,13 @@ namespace CNMB_v4.Controllers
     public class TeachersController : ControllerBase
     {
         private readonly CNMBContext _context;
+        //add in IRepository stuff here: See below
+        //private readonly IRepository _db;
+
+        //public StudentMockDBController(IRepository db) //constructor
+        //{
+        //    _db = db;
+        //}
 
         public TeachersController(CNMBContext context)
         {
