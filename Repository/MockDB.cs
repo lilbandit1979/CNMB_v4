@@ -19,10 +19,10 @@ namespace Repository
 
         public static List<School> _schools = new List<School>()
         {
-            new School {SchoolID=1,SchoolName="Conleths",SchoolPhone="045431179",SchoolAddress="Newbridge",SchoolEircode="W12F659"},
-            new School {SchoolID=2,SchoolName="Patricians",SchoolPhone="045238867",SchoolAddress="Newbridge",SchoolEircode="W12F658"},
-            new School {SchoolID=3,SchoolName="Corbans",SchoolPhone="045651175",SchoolAddress="Naas",SchoolEircode="Z14F250"},
-            new School {SchoolID=4,SchoolName="Convent",SchoolPhone="045318860",SchoolAddress="Leixlip",SchoolEircode="E56F195"}
+            new School {SchoolId=1,SchoolName="Conleths",SchoolPhone="045431179",SchoolAddress="Newbridge",SchoolEircode="W12F659"},
+            new School {SchoolId=2,SchoolName="Patricians",SchoolPhone="045238867",SchoolAddress="Newbridge",SchoolEircode="W12F658"},
+            new School {SchoolId=3,SchoolName="Corbans",SchoolPhone="045651175",SchoolAddress="Naas",SchoolEircode="Z14F250"},
+            new School {SchoolId=4,SchoolName="Convent",SchoolPhone="045318860",SchoolAddress="Leixlip",SchoolEircode="E56F195"}
         };
         public void AddSchool(School school)
         {
