@@ -11,7 +11,7 @@ namespace Models
     {
         [Required]
         [Key]
-        public int SchoolID { get; set; }
+        public int SchoolId { get; set; }
         [Required]
         public string SchoolName { get; set; } = "";
         [Required]

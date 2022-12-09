@@ -19,7 +19,7 @@ namespace Models
         [Required]
         public string TeacherPhone { get; set; } = "";
         [Required]
-        public bool IsMainRepo { get; set; }= false;
+        public bool IsMainRep { get; set; }= false;
 
         //foreign key back to School
         public int? SchoolID { get; set; }
