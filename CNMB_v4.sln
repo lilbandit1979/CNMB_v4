@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CNMB_v4", "CNMB_v4\CNMB_v4.csproj", "{DCF83C56-1F18-4BCA-9884-ECE7C456D2FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{3F6F4BFF-5B14-409C-9600-81C9660C4E40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{96830BE9-9FB6-4AC8-87F7-1FCE82CA84E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCF83C56-1F18-4BCA-9884-ECE7C456D2FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCF83C56-1F18-4BCA-9884-ECE7C456D2FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCF83C56-1F18-4BCA-9884-ECE7C456D2FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCF83C56-1F18-4BCA-9884-ECE7C456D2FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F6F4BFF-5B14-409C-9600-81C9660C4E40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F6F4BFF-5B14-409C-9600-81C9660C4E40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F6F4BFF-5B14-409C-9600-81C9660C4E40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F6F4BFF-5B14-409C-9600-81C9660C4E40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96830BE9-9FB6-4AC8-87F7-1FCE82CA84E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96830BE9-9FB6-4AC8-87F7-1FCE82CA84E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96830BE9-9FB6-4AC8-87F7-1FCE82CA84E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96830BE9-9FB6-4AC8-87F7-1FCE82CA84E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D7D0C976-0A33-46D0-A80E-99447B3D78C3}
+	EndGlobalSection
+EndGlobal
