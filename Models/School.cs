@@ -23,8 +23,8 @@ namespace Models
 
         //list of teachers for a school
         public virtual ICollection<Teacher>? Teachers { get; set; }
-
-
+        //list of teams for a school
+        public virtual ICollection<Team>? Teams { get; set; } 
 
     }
 }

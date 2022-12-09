@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using CNMB_v4.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<CNMBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CNMBContext") ?? throw new InvalidOperationException("Connection string 'CNMBContext' not found.")));
 
 // Add services to the container.
 
