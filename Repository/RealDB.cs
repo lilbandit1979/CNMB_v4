@@ -10,20 +10,9 @@ namespace Repository
 {
     public class RealDB : IRepository
     {
-        //StudentContext ct;
-        //public RealSql()
-        //{
-        //    ct = new StudentContext();
-        //}
-        //~RealSql()
-        //{
-        //    if (ct != null) ct.Dispose();
-        //}
-
-
+     
         CNMBContext _db = default!;
-        
-        
+         
         public RealDB(CNMBContext db)
         {
             this._db=db;
@@ -35,14 +24,14 @@ namespace Repository
 
         public void AddSchool(School school)
         {
-            _db.Add(school);
+            _db.School.Add(school);
             _db.SaveChanges();
 
         }
 
         public void AddTeacher(Teacher teacher)
         {
-            _db.Add(teacher);
+            _db.Teacher.Add(teacher);
             _db.SaveChanges();
         }
 
@@ -51,44 +40,82 @@ namespace Repository
             var found = _db.School.Find(id);
             if (found != null)
             {
-                _db.Remove(found);
+                _db.School.Remove(found);
                 _db.SaveChanges();
             }
+            throw new Exception("School not found");
         }
 
         public void DeleteTeacher(int id)
         {
-            _db.DeleteTeacher(id);
+            var found = _db.Teacher.Find(id);
+            if (found != null)
+            {
+                _db.Teacher.Remove(found);
+                _db.SaveChanges();
+            }
+            throw new Exception("Teacher not found");
         }
 
         public IEnumerable<School> GetAllSchools()
         {
-            return _db.GetAllSchools();
+            return _db.School.ToList();
         }
 
         public IEnumerable<Teacher> GetAllTeachers()
         {
-           return _db.GetAllTeachers();
+           return _db.Teacher.ToList();
         }
 
         public School GetSchoolById(int id)
         {
-            var found = _db.W
+            var found = _db.School.Find(id);
+            {
+                if (found != null)
+                {
+                    return found;
+                }
+                throw new Exception("School not found");
+            }
         }
 
         public Teacher GetTeacherById(int id)
         {
-            throw new NotImplementedException();
+            var found = _db.Teacher.Find(id);
+            if(found!=null)
+            {
+                return found;
+            }
+            throw new Exception("Teacher not found");
+            
         }
 
         public void UpdateSchool(School school)
         {
-            throw new NotImplementedException();
+            var found = _db.School.Find(school.SchoolId);
+            if(found!=null)
+            {
+                found.SchoolName=school.SchoolName;
+                found.SchoolPhone=school.SchoolPhone;
+                found.SchoolEircode = school.SchoolEircode;
+                found.SchoolAddress=school.SchoolAddress;
+                
+                _db.School.Update(found); //check this ************
+            }
+            
         }
 
         public void UpdateTeacher(Teacher teacher)
         {
-            throw new NotImplementedException();
+            var found = _db.Teacher.Find(teacher.TeacherId);
+            if (found != null)
+            {
+                found.FName = teacher.FName;
+                found.SName = teacher.SName;
+                found.TeacherPhone = teacher.TeacherPhone;
+                found.IsMainRep = teacher.IsMainRep;
+                _db.Teacher.Update(found);//check this ************ --> should it be found.TeacherId
+            }
         }
     }
 }
@@ -96,39 +123,3 @@ namespace Repository
 
 //find teacher/school/team by string var user = context.Users.Find("johndoe1987");
 
-//namespace Repository.Repo
-//{
-//    public class RealSql : IRepository
-//    {
-//        StudentContext ct;
-//        public RealSql()
-//        {
-//            ct = new StudentContext();
-//        }
-//        ~RealSql()
-//        {
-//            if (ct != null) ct.Dispose();
-//        }
-
-//        public void AddStudent(Student s)
-//        {
-//            ct.Students.Add(s);
-
-//            ct.SaveChanges();
-//        }
-//        public List<Module> GetModules()
-//        {
-//            return ct.Modules.ToList();
-//        }
-//        public List<Student> GetStudents()
-//        {
-//            return ct.Students.ToList();
-//        }
-//        public void AddModule(Module module)
-//        {
-//            ct.Modules.Add(module);
-//        }
-
-
-//    }
-//}
