@@ -15,18 +15,16 @@ namespace CNMB_v4.Controllers
     [ApiController]
     public class SchoolsController : ControllerBase
     {
-        private readonly CNMBContext _context;
+        private readonly CNMBContext _context;  //Check this on monday night
+        //private readonly IRepository _context;
+
         //add in IRepository stuff here: See below
         //private readonly IRepository _db;
 
-        //public StudentMockDBController(IRepository db) //constructor
-        //{
-        //    _db = db;
-        //}
-
-        public SchoolsController(CNMBContext context)
+      
+        public SchoolsController(CNMBContext db)
         {
-            _context = context;
+            _context = db;
         }
 
         // GET: api/Schools
@@ -52,34 +50,72 @@ namespace CNMB_v4.Controllers
 
         // PUT: api/Schools/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutSchool(int id, School school) //change this 
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutSchool(int id, School school) //change this in RealDB class?
+        //{
+
+        //    if (id != school.SchoolId)
+        //    {
+
+        //        return BadRequest();
+        //    }
+
+        //    _context.Entry(school).State = EntityState.Modified;
+
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!SchoolExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return NoContent();
+        //}
+
+        [HttpPut("{id}")] // working here -------> editing template
+        public ActionResult<School> PutSchool(School school, int id)
         {
             if (id != school.SchoolId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(school).State = EntityState.Modified;
-
-            try
+            //_db.Entry(studentExam).State = EntityState.Modified;
+            var found = _context.GetSchool(id);
+            if (found != null)
             {
-                await _context.SaveChangesAsync();
+                _db.EditStudentExam(studentExam);
+                return found;
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SchoolExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            return NotFound();
+            //if(found == null)
+            //{
+            //    return NotFound();
+            //}
+            //_db.EditStudentExam(studentExam); //pass in the one I want to edit
+            //return found;
+            //_db.EditStudentExam(found);
+            //return Ok(); //not editing
 
-            return NoContent();
+
+
+
+
+
+            //var found = _db.GetStudentExam(id);
+            //_db.EditStudentExam(found);
+            //return Ok(); //not sure about this!!  
         }
+
 
         // POST: api/Schools
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
