@@ -53,7 +53,7 @@ namespace CNMB_v4.Controllers
         // PUT: api/Schools/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSchool(int id, School school)
+        public async Task<IActionResult> PutSchool(int id, School school) //change this 
         {
             if (id != school.SchoolId)
             {

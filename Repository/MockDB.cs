@@ -85,7 +85,7 @@ namespace Repository
             throw new ArgumentException("Teacher not found");
         }
 
-        public void UpdateSchool(School school)
+        public void UpdateSchool(School school) //check --only takes school. Maybe should take int id as well?
         {
             var found = _schools.FirstOrDefault(x => x.SchoolId == school.SchoolId);
             if(found!=null)
