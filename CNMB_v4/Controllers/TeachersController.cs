@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
 using Models;
 using Repository;
 
@@ -15,7 +14,7 @@ namespace CNMB_v4.Controllers
     [ApiController]
     public class TeachersController : ControllerBase
     {
-        private readonly CNMBContext _context;
+        private readonly IRepository _context = default!;
         //add in IRepository stuff here: See below
         //private readonly IRepository _db;
 
@@ -24,93 +23,92 @@ namespace CNMB_v4.Controllers
         //    _db = db;
         //} pray!!
 
-        public TeachersController(CNMBContext context)
+        public TeachersController(IRepository context)
         {
-            _context = context;
+            this._context = context;
         }
 
         // GET: api/Teachers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Teacher>>> GetTeacher()
+        public  ActionResult<IEnumerable<Teacher>> GetTeacher()
         {
-            return await _context.Teacher.ToListAsync();
+            return _context.GetAllTeachers().ToList();
         }
 
         // GET: api/Teachers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Teacher>> GetTeacher(int id)
+        public ActionResult<Teacher> GetTeacher(int id)
         {
-            var teacher = await _context.Teacher.FindAsync(id);
-
+            var teacher = _context.GetTeacherById(id);
             if (teacher == null)
             {
                 return NotFound();
             }
-
             return teacher;
         }
 
         // PUT: api/Teachers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTeacher(int id, Teacher teacher)
+        public ActionResult PutTeacher(int id, Teacher teacher)
         {
             if (id != teacher.TeacherId)
             {
                 return BadRequest();
             }
-
-            _context.Entry(teacher).State = EntityState.Modified;
-
-            try
+            var found = _context.GetTeacherById(id);
+            if(found!=null)
             {
-                await _context.SaveChangesAsync();
+                _context.UpdateTeacher(teacher);
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TeacherExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return Ok();
         }
+
+        //[HttpPut("{id}")] // works ---Edit school only
+        //public ActionResult<School> PutSchool(School school, int id)
+        //{
+        //    if (id != school.SchoolId)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    var found = _context.GetSchoolById(id);
+        //    if (found != null)
+        //    {
+        //        _context.UpdateSchool(found);
+        //    }
+        //    // _context.UpdateSchool(school);
+        //    return Ok();
+        //}
 
         // POST: api/Teachers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Teacher>> PostTeacher(Teacher teacher)
+        [HttpPost] //works --teacher only
+        public ActionResult<Teacher> PostTeacher(Teacher teacher)
         {
-            _context.Teacher.Add(teacher);
-            await _context.SaveChangesAsync();
-
+            _context.AddTeacher(teacher);
+            //check this below --might give a better return in Swagger than Ok();
             return CreatedAtAction("GetTeacher", new { id = teacher.TeacherId }, teacher);
         }
 
-        // DELETE: api/Teachers/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTeacher(int id)
-        {
-            var teacher = await _context.Teacher.FindAsync(id);
-            if (teacher == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Teachers/5
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteTeacher(int id)
+        //{
+        //    var teacher = await _context.Teacher.FindAsync(id);
+        //    if (teacher == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.Teacher.Remove(teacher);
-            await _context.SaveChangesAsync();
+        //    _context.Teacher.Remove(teacher);
+        //    await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
-        private bool TeacherExists(int id)
-        {
-            return _context.Teacher.Any(e => e.TeacherId == id);
-        }
+        //private bool TeacherExists(int id)
+        //{
+        //    return _context.Teacher.Any(e => e.TeacherId == id);
+        //}
     }
 }

@@ -29,8 +29,7 @@ namespace CNMB_v4.Controllers
         // GET: api/Schools
         [HttpGet]
         public ActionResult<IEnumerable<School>> GetSchool()
-        {
-            //return await _context.School.ToListAsync();
+        { 
             return _context.GetAllSchools().ToList();
            
         }
@@ -59,10 +58,12 @@ namespace CNMB_v4.Controllers
             var found = _context.GetSchoolById(id);
             if (found != null)
             {
-                _context.UpdateSchool(found);
+                _context.UpdateSchool(school);
+                return Ok(found);
             }
-            _context.UpdateSchool(school);
-            return Ok(); 
+            return NotFound();
+            //_context.UpdateSchool(school);
+            
         }
 
 
@@ -71,7 +72,6 @@ namespace CNMB_v4.Controllers
         [HttpPost]
         public ActionResult<School> PostSchool(School school)
         {
-           
             _context.AddSchool(school);
             return Ok(school.SchoolId); //check if it can just be Ok();
         }
