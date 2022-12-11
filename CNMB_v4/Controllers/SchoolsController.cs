@@ -14,30 +14,6 @@ namespace CNMB_v4.Controllers
     [ApiController]
     public class SchoolsController : ControllerBase
     {
-        //private readonly IPrescriptionRepository _prescriptionRepository;
-        //private readonly IMapper _mapper;
-        //public PrescriptionController(IPrescriptionRepository prescriptionRepository, IMapper mapper)
-        //{
-        //    _prescriptionRepository = prescriptionRepository;
-        //    _mapper = mapper;
-        //}
-        //// GET: api/<PrescrptionController>
-        //[HttpGet]
-        //public ActionResult<IEnumerable<PrescriptionReadDto>> Get()
-        //{
-        //    var prescriptions = _prescriptionRepository.GetAll();
-
-        //    var prescriptionDto = _mapper.Map<IEnumerable<PrescriptionReadDto>>(prescriptions);
-
-        //    if (prescriptions == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok(prescriptionDto);
-
-        //}
-
-        //Mine below:
         private readonly IRepository _context = default!;  //Check this on monday night
         //private readonly IRepository _repo;
 
@@ -45,7 +21,7 @@ namespace CNMB_v4.Controllers
         //private readonly IRepository _db;
 
       
-        public SchoolsController(IRepository context) //Check this on Monday night--should it be IRepository?
+        public SchoolsController(IRepository context) 
         {
             this._context = context;
         }
@@ -73,39 +49,6 @@ namespace CNMB_v4.Controllers
             return NotFound();
         }
 
-        // PUT: api/Schools/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutSchool(int id, School school) //change this in RealDB class?
-        //{
-
-        //    if (id != school.SchoolId)
-        //    {
-
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(school).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!SchoolExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
-
         [HttpPut("{id}")] // works ---Edit school only
         public ActionResult<School> PutSchool(School school, int id)
         {
@@ -128,14 +71,12 @@ namespace CNMB_v4.Controllers
         [HttpPost]
         public ActionResult<School> PostSchool(School school)
         {
-            //_context.School.Add(school);
-            //await _context.SaveChangesAsync();
-
-            //return CreatedAtAction("GetSchool", new { id = school.SchoolId }, school);
+           
             _context.AddSchool(school);
             return Ok(school.SchoolId); //check if it can just be Ok();
         }
 
+        //Delete not needed
         //// DELETE: api/Schools/5 
         //[HttpDelete("{id}")]
         //public async Task<IActionResult> DeleteSchool(int id)

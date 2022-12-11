@@ -118,7 +118,9 @@ namespace Repository
                 found.SName = teacher.SName;
                 found.TeacherPhone = teacher.TeacherPhone;
                 found.IsMainRep = teacher.IsMainRep;
+                
                 _context.Teacher.Update(found);//check this ************ --> should it be found.TeacherId
+                _context.SaveChanges();
             }
         }
     }
