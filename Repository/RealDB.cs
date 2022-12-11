@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,65 +12,65 @@ namespace Repository
     public class RealDB : IRepository
     {
      
-        CNMBContext _db = default!;
+        private readonly CNMBContext _context;
          
-        public RealDB(CNMBContext db)
+        public RealDB(CNMBContext context)
         {
-            this._db=db;
+            _context=context;
         }
-        ~RealDB() //destructor
-        {
-            if (_db != null) _db.Dispose();
-        }
+        //~RealDB() //destructor //Check if needed ***********
+        //{
+        //    if (context != null) context.Dispose();
+        //}
 
         public void AddSchool(School school)
         {
-            _db.School.Add(school);
-            _db.SaveChanges();
+            _context.School.Add(school);
+            _context.SaveChanges();
 
         }
 
         public void AddTeacher(Teacher teacher)
         {
-            _db.Teacher.Add(teacher);
-            _db.SaveChanges();
+            _context.Teacher.Add(teacher);
+            _context.SaveChanges();
         }
 
         public void DeleteSchool(int id)
         {
-            var found = _db.School.Find(id);
+            var found = _context.School.Find(id);
             if (found != null)
             {
-                _db.School.Remove(found);
-                _db.SaveChanges();
+                _context.School.Remove(found);
+                _context.SaveChanges();
             }
             throw new Exception("School not found");
         }
 
         public void DeleteTeacher(int id)
         {
-            var found = _db.Teacher.Find(id);
+            var found = _context.Teacher.Find(id);
             if (found != null)
             {
-                _db.Teacher.Remove(found);
-                _db.SaveChanges();
+                _context.Teacher.Remove(found);
+                _context.SaveChanges();
             }
             throw new Exception("Teacher not found");
         }
 
         public IEnumerable<School> GetAllSchools()
         {
-            return _db.School.ToList();
+            return _context.School.ToList();
         }
 
         public IEnumerable<Teacher> GetAllTeachers()
         {
-           return _db.Teacher.ToList();
+           return _context.Teacher.ToList();
         }
 
         public School GetSchoolById(int id)
         {
-            var found = _db.School.Find(id);
+            var found = _context.School.Find(id);
             {
                 if (found != null)
                 {
@@ -81,7 +82,7 @@ namespace Repository
 
         public Teacher GetTeacherById(int id)
         {
-            var found = _db.Teacher.Find(id);
+            var found = _context.Teacher.Find(id);
             if(found!=null)
             {
                 return found;
@@ -92,7 +93,7 @@ namespace Repository
 
         public void UpdateSchool(School school)
         {
-            var found = _db.School.Find(school.SchoolId);
+            var found = _context.School.Find(school.SchoolId);
             if(found!=null)
             {
                 found.SchoolName=school.SchoolName;
@@ -100,26 +101,26 @@ namespace Repository
                 found.SchoolEircode = school.SchoolEircode;
                 found.SchoolAddress=school.SchoolAddress;
                 
-                _db.School.Update(found); //check this ************
+                _context.School.Update(found); //check this ************
             }
             
         }
 
         public void UpdateTeacher(Teacher teacher)
         {
-            var found = _db.Teacher.Find(teacher.TeacherId);
+            var found = _context.Teacher.Find(teacher.TeacherId);
             if (found != null)
             {
                 found.FName = teacher.FName;
                 found.SName = teacher.SName;
                 found.TeacherPhone = teacher.TeacherPhone;
                 found.IsMainRep = teacher.IsMainRep;
-                _db.Teacher.Update(found);//check this ************ --> should it be found.TeacherId
+                _context.Teacher.Update(found);//check this ************ --> should it be found.TeacherId
             }
         }
     }
 }
 
 
-//find teacher/school/team by string var user = context.Users.Find("johndoe1987");
+//find teacher/school/team by string var user = _context.Users.Find("johndoe1987");
 

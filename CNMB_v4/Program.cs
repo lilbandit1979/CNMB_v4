@@ -7,7 +7,7 @@ builder.Services.AddDbContext<CNMBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CNMBContext") ?? throw new InvalidOperationException("Connection string 'CNMBContext' not found.")));
 
 // Add services to the container.
-builder.Services.AddScoped<IRepository, MockDB>();//Added Repo pattern
+builder.Services.AddScoped<IRepository, RealDB>();//Added Repo pattern //changed from MockDB
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
