@@ -1,7 +1,10 @@
-﻿using Models;
+﻿using Microsoft.OpenApi.Validations;
+using Models;
+using NuGet.DependencyResolver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,6 +27,12 @@ namespace Repository
             new School {SchoolId=3,SchoolName="Corbans",SchoolPhone="045651175",SchoolAddress="Naas",SchoolEircode="Z14F250"},
             new School {SchoolId=4,SchoolName="Convent",SchoolPhone="045318860",SchoolAddress="Leixlip",SchoolEircode="E56F195"}
         };
+
+        public static List<Team> _teams = new List<Team>()
+        {
+            new Team { TeamId=0,Gender=Gender.boys,TeamGame=TeamType.SeniorFootball,Mentor=_teachers.FirstOrDefault(x=>x.TeacherId==1) },
+            new Team { TeamId=1,Gender=Gender.girls,TeamGame=TeamType.U11Camogie,Mentor=_teachers.FirstOrDefault(x=>x.TeacherId==2)}
+            };
         public void AddSchool(School school)
         {
             _schools.Add(school);
@@ -108,8 +117,40 @@ namespace Repository
                 found.SName = teacher.SName;
                 found.TeacherPhone = teacher.TeacherPhone;
                 found.IsMainRep = teacher.IsMainRep;
-            }
-            
+            }  
         }
+
+        public void AddTeam(Team team)
+        {
+           _teams.Add(team);
+        }
+
+        public IEnumerable<Team> GetAllTeams()
+        {
+            return _teams.ToList();
+        }
+
+        public Team GetTeamById(int id)
+        {
+            var found = _teams.FirstOrDefault(t=>t.TeamId==id);
+            if(found!=null)
+            {
+                return found;
+            }
+            throw new ArgumentException("Team not found");
+        }
+
+        public void UpdateTeam(Team team)
+        {
+            var found = _teams.FirstOrDefault(t => t.TeamId == team.TeamId);
+            if (found != null)
+            {
+                //found.TeamId = team.TeamId;
+                found.TeamGame = team.TeamGame;
+                found.Gender = team.Gender;
+                found.Mentor = team.Mentor;
+            }
+        }
+  
     }
 }

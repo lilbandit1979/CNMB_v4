@@ -15,7 +15,7 @@ namespace CNMB_v4.Controllers
     [ApiController]
     public class TeamsController : ControllerBase
     {
-        private readonly CNMBContext _context;
+        private readonly IRepository _context = default!;
         //add in IRepository stuff here: See below
         //private readonly IRepository _db;
 
@@ -24,93 +24,79 @@ namespace CNMB_v4.Controllers
         //    _db = db;
         //}
 
-        public TeamsController(CNMBContext context)
+        public TeamsController(IRepository context)
         {
             _context = context;
         }
 
         // GET: api/Teams
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Team>>> GetTeam()
+        public ActionResult<IEnumerable<Team>> GetTeams()
         {
-            return await _context.Team.ToListAsync();
+            return _context.GetAllTeams().ToList();
         }
 
         // GET: api/Teams/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Team>> GetTeam(int id)
+        public ActionResult<Team> GetTeam(int id)
         {
-            var team = await _context.Team.FindAsync(id);
+            var team = _context.GetTeamById(id);
 
-            if (team == null)
+            if (team != null)
             {
-                return NotFound();
+                return team;
             }
 
-            return team;
+            return NotFound();
         }
 
         // PUT: api/Teams/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTeam(int id, Team team)
+        public ActionResult<Team> PutTeam(int id, Team team)
         {
             if (id != team.TeamId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(team).State = EntityState.Modified;
-
-            try
+            var found = _context.GetSchoolById(id);
+            if(found!=null)
             {
-                await _context.SaveChangesAsync();
+                _context.UpdateTeam(team);
+                return Ok(found);
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TeamExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return NotFound();
         }
 
         //// POST: api/Teams
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Team>> PostTeam(Team team)
+        public ActionResult<Team> PostTeam(Team team)
         {
-            _context.Team.Add(team);
-            await _context.SaveChangesAsync();
-
+            _context.AddTeam(team);
             return CreatedAtAction("GetTeam", new { id = team.TeamId }, team);
         }
 
-        // DELETE: api/Teams/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTeam(int id)
-        {
-            var team = await _context.Team.FindAsync(id);
-            if (team == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Teams/5
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteTeam(int id)
+        //{
+        //    var team = await _context.Team.FindAsync(id);
+        //    if (team == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.Team.Remove(team);
-            await _context.SaveChangesAsync();
+        //    _context.Team.Remove(team);
+        //    await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
-        private bool TeamExists(int id)
-        {
-            return _context.Team.Any(e => e.TeamId == id);
-        }
+        //private bool TeamExists(int id)
+        //{
+        //    return _context.Team.Any(e => e.TeamId == id);
+        //}
     }
 }

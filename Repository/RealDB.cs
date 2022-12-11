@@ -123,6 +123,40 @@ namespace Repository
                 _context.SaveChanges();
             }
         }
+
+        public void AddTeam(Team team)
+        {
+            _context.Team.Add(team);
+            _context.SaveChanges();
+        }
+        public IEnumerable<Team> GetAllTeams()
+        {
+            return _context.Team.ToList();
+        }
+        public Team GetTeamById(int id)
+        {
+            var found = _context.Team.Find(id);
+            if(found!=null)
+            {
+                return found;
+            }
+            throw new Exception("Team not found"); 
+        }
+        public void UpdateTeam(Team team)
+        {
+            var found = _context.Team.Find(team.TeamId);
+            if(found!=null)
+            {
+                found.TeamGame = team.TeamGame;
+                found.Gender = team.Gender;
+                found.Mentor = team.Mentor;
+
+                _context.Team.Update(found); //check this.
+                _context.SaveChanges();
+            }
+        }
+        
+
     }
 }
 
