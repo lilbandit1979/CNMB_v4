@@ -25,7 +25,7 @@ namespace Repository
         public void AddTeacher(Teacher teacher);
         public void UpdateTeacher(Teacher teacher); //possibly add id here as well
         public void DeleteTeacher(int id);
-        public void AddTeam(Team team);
+        public void AddTeam(Team team, Teacher teacher);
         public IEnumerable<Team> GetAllTeams();
         public Team GetTeamById(int id);
         public void UpdateTeam(Team team);

@@ -61,7 +61,7 @@ namespace CNMB_v4.Controllers
             }
 
             var found = _context.GetSchoolById(id);
-            if(found!=null)
+            if (found != null)
             {
                 _context.UpdateTeam(team);
                 return Ok(found);
@@ -71,12 +71,31 @@ namespace CNMB_v4.Controllers
 
         //// POST: api/Teams
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public ActionResult<Team> PostTeam(Team team)
+        [HttpPost("Team/AddTeam/{team}")]
+        public ActionResult<Team> PostTeam(Teacher teacher, Team team)
         {
-            _context.AddTeam(team);
+            _context.AddTeam(team,teacher);
             return CreatedAtAction("GetTeam", new { id = team.TeamId }, team);
         }
+
+
+        //[HttpGet("Students/Mature/{mature:bool}/Min{minGrade}")]
+        //public ActionResult<IEnumerable<string>> GetMatureMinGrades(bool mature, int minGrade)
+        //{
+        //    var students = ExamResults.Where(s => s.MatureStudent == mature && s.Grade >= minGrade)
+        //        .Select(x => x.Name);
+        //    if (students == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return students.ToList();
+        //}
+
+
+
+
+
+
 
         //// DELETE: api/Teams/5
         //[HttpDelete("{id}")]

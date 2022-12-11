@@ -33,5 +33,11 @@ namespace Models
         public TeamType TeamGame { get; set; } //football, hurling etc.
         [Required]
         public Teacher? Mentor { get; set; } //can be null
+        
+        //Both added 11thDec --cant add a mentor to a team
+        //list of teachers for a school
+        //public virtual ICollection<Teacher>? Teachers { get; set; }
+        ////useful to be able to get the school without querying the ID
+        //public School? School { get; set; }
     }
 }

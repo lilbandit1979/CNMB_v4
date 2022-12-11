@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
@@ -124,11 +125,18 @@ namespace Repository
             }
         }
 
-        public void AddTeam(Team team)
+        public void AddTeam(Team team,Teacher teacher)
         {
-            _context.Team.Add(team);
+            var mentor = _context.Teacher.FirstOrDefault(m => m.TeacherId == teacher.TeacherId);
+            var newTeam = new Team { Gender = team.Gender, TeamGame = team.TeamGame, Mentor = mentor };
+            _context.Team.Add(newTeam);
             _context.SaveChanges();
-        }
+         }
+//        var author = new Author { FirstName = "William", LastName = "Shakespeare" };
+//        var book = new Book { Title = "Adventures of Huckleberry Finn" };
+//        context.AddRange(author, book);
+//context.SaveChanges();
+
         public IEnumerable<Team> GetAllTeams()
         {
             return _context.Team.ToList();
@@ -144,6 +152,8 @@ namespace Repository
         }
         public void UpdateTeam(Team team)
         {
+            //find a mentor to add from your school
+            //need to assign a mentor to a team
             var found = _context.Team.Find(team.TeamId);
             if(found!=null)
             {
