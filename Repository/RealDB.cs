@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -102,6 +103,8 @@ namespace Repository
                 found.SchoolAddress=school.SchoolAddress;
                 
                 _context.School.Update(found); //check this ************
+                _context.SaveChanges(); //--Works!!!!
+                
             }
             
         }

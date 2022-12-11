@@ -106,40 +106,20 @@ namespace CNMB_v4.Controllers
         //    return NoContent();
         //}
 
-        [HttpPut("{id}")] // working here -------> editing template
+        [HttpPut("{id}")] // works ---Edit school only
         public ActionResult<School> PutSchool(School school, int id)
         {
             if (id != school.SchoolId)
             {
                 return BadRequest();
             }
-
-            //_db.Entry(studentExam).State = EntityState.Modified;
-            //var found = _context.School.Find(id);
             var found = _context.GetSchoolById(id);
             if (found != null)
             {
                 _context.UpdateSchool(found);
-                return found;
             }
-            return NotFound();
-            //if(found == null)
-            //{
-            //    return NotFound();
-            //}
-            //_db.EditStudentExam(studentExam); //pass in the one I want to edit
-            //return found;
-            //_db.EditStudentExam(found);
-            //return Ok(); //not editing
-
-
-
-
-
-
-            //var found = _db.GetStudentExam(id);
-            //_db.EditStudentExam(found);
-            //return Ok(); //not sure about this!!  
+            _context.UpdateSchool(school);
+            return Ok(); 
         }
 
 
