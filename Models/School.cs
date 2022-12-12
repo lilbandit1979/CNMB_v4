@@ -19,12 +19,12 @@ namespace Models
         [Required]
         public string SchoolAddress { get; set; } = "";
         [Required]
-        public string SchoolEircode { get; set; } = ""; //maybe call a map API??
+        public string SchoolEircode { get; set; } = ""; 
 
         //list of teachers for a school
         public virtual ICollection<Teacher>? Teachers { get; set; }
         //list of teams for a school
-        public virtual ICollection<Team>? Teams { get; set; } 
+        //public virtual ICollection<Team>? Teams { get; set; } 
 
     }
 }

@@ -22,10 +22,10 @@ namespace Models
         public bool IsMainRep { get; set; }= false;
 
         //foreign key back to School
-        public int? SchoolID { get; set; }
+        public int? SchoolId { get; set; }
 
         //useful to be able to get the school without querying the ID
-        public School? School { get; set; }
+        //public School? School { get; set; }
 
     }
 }

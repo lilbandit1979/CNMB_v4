@@ -120,7 +120,7 @@ namespace Repository
             }  
         }
 
-        public void AddTeam(Team team, Teacher teacher)
+        public void AddTeam(Team team)
         {
            _teams.Add(team);
         }

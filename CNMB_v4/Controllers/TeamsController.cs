@@ -19,11 +19,6 @@ namespace CNMB_v4.Controllers
         //add in IRepository stuff here: See below
         //private readonly IRepository _db;
 
-        //public StudentMockDBController(IRepository db) //constructor
-        //{
-        //    _db = db;
-        //}
-
         public TeamsController(IRepository context)
         {
             _context = context;
@@ -71,12 +66,26 @@ namespace CNMB_v4.Controllers
 
         //// POST: api/Teams
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("Team/AddTeam/{team}")]
-        public ActionResult<Team> PostTeam(Teacher teacher, Team team)
+        [HttpPost]
+        public ActionResult<Team> PostTeam(Team team)
         {
-            _context.AddTeam(team,teacher);
-            return CreatedAtAction("GetTeam", new { id = team.TeamId }, team);
+            _context.AddTeam(team);
+            return Ok();
         }
+
+        //[HttpPost]
+        //[Route("{surveyId}/{expiryDate}")]
+        //public IActionResult Post(int surveyId, DateTime expiryDate)
+        //{
+        //    return Ok(new { surveyId, expiryDate });
+        //}
+
+
+        //public ActionResult<Team> PostTeam(Teacher teacher, Team team)
+        //{
+        //    _context.AddTeam(team,teacher);
+        //    return CreatedAtAction("GetTeam", new { id = team.TeamId }, team);
+        //}
 
 
         //[HttpGet("Students/Mature/{mature:bool}/Min{minGrade}")]

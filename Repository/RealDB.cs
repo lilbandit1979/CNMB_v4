@@ -125,10 +125,10 @@ namespace Repository
             }
         }
 
-        public void AddTeam(Team team,Teacher teacher)
+        public void AddTeam(Team team)
         {
-            var mentor = _context.Teacher.FirstOrDefault(m => m.TeacherId == teacher.TeacherId);
-            var newTeam = new Team { Gender = team.Gender, TeamGame = team.TeamGame, Mentor = mentor };
+            //var mentor = _context.Teacher.FirstOrDefault(m => m.TeacherId == teacher.TeacherId);
+            var newTeam = new Team { Gender = team.Gender, TeamGame = team.TeamGame, Mentor = team.Mentor };
             _context.Team.Add(newTeam);
             _context.SaveChanges();
          }

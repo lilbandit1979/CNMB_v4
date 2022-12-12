@@ -27,6 +27,8 @@ namespace Models
         [Required]
         [Key]
         public int TeamId { get; set; }
+
+        public School? school { get; set; } //maybe set a school as well??
         [Required]
         public  Gender Gender { get; set; }
         [Required]
@@ -34,10 +36,11 @@ namespace Models
         [Required]
         public Teacher? Mentor { get; set; } //can be null
         
-        //Both added 11thDec --cant add a mentor to a team
-        //list of teachers for a school
-        //public virtual ICollection<Teacher>? Teachers { get; set; }
+        
         ////useful to be able to get the school without querying the ID
-        //public School? School { get; set; }
+        public School? School { get; set; }
+
+        //foreign key back to school
+        //public int? SchoolID { get; set; }
     }
 }
