@@ -70,7 +70,7 @@ namespace Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SchoolId")
+                    b.Property<int>("SchoolId")
                         .HasColumnType("int");
 
                     b.Property<string>("TeacherPhone")
@@ -98,7 +98,7 @@ namespace Repository.Migrations
                     b.Property<int>("MentorTeacherId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SchoolID")
+                    b.Property<int?>("SchoolId")
                         .HasColumnType("int");
 
                     b.Property<int>("TeamGame")
@@ -108,18 +108,18 @@ namespace Repository.Migrations
 
                     b.HasIndex("MentorTeacherId");
 
-                    b.HasIndex("SchoolID");
+                    b.HasIndex("SchoolId");
 
                     b.ToTable("Team");
                 });
 
             modelBuilder.Entity("Models.Teacher", b =>
                 {
-                    b.HasOne("Models.School", "School")
+                    b.HasOne("Models.School", null)
                         .WithMany("Teachers")
-                        .HasForeignKey("SchoolId");
-
-                    b.Navigation("School");
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Models.Team", b =>
@@ -132,7 +132,7 @@ namespace Repository.Migrations
 
                     b.HasOne("Models.School", "School")
                         .WithMany()
-                        .HasForeignKey("SchoolID");
+                        .HasForeignKey("SchoolId");
 
                     b.Navigation("Mentor");
 

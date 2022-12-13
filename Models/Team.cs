@@ -33,10 +33,12 @@ namespace Models
         public TeamType TeamGame { get; set; } //football, hurling etc.
         [Required]
         public Teacher? Mentor { get; set; } //can be null
+        //public int TeacherId { get; set; } //not sure about this
+        
         ////useful to be able to get the school without querying the ID
-        public School? School { get; set; }
+        public School? School { get; set; } //try nullable
 
         //foreign key back to school
-        public int? SchoolID { get; set; }
+        //public int? SchoolID { get; set; }
     }
 }

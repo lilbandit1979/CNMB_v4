@@ -34,7 +34,7 @@ namespace Repository.Migrations
                     SName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TeacherPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsMainRep = table.Column<bool>(type: "bit", nullable: false),
-                    SchoolId = table.Column<int>(type: "int", nullable: true)
+                    SchoolId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,7 +43,8 @@ namespace Repository.Migrations
                         name: "FK_Teacher_School_SchoolId",
                         column: x => x.SchoolId,
                         principalTable: "School",
-                        principalColumn: "SchoolId");
+                        principalColumn: "SchoolId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,14 +56,14 @@ namespace Repository.Migrations
                     Gender = table.Column<int>(type: "int", nullable: false),
                     TeamGame = table.Column<int>(type: "int", nullable: false),
                     MentorTeacherId = table.Column<int>(type: "int", nullable: false),
-                    SchoolID = table.Column<int>(type: "int", nullable: true)
+                    SchoolId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Team", x => x.TeamId);
                     table.ForeignKey(
-                        name: "FK_Team_School_SchoolID",
-                        column: x => x.SchoolID,
+                        name: "FK_Team_School_SchoolId",
+                        column: x => x.SchoolId,
                         principalTable: "School",
                         principalColumn: "SchoolId");
                     table.ForeignKey(
@@ -84,9 +85,9 @@ namespace Repository.Migrations
                 column: "MentorTeacherId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Team_SchoolID",
+                name: "IX_Team_SchoolId",
                 table: "Team",
-                column: "SchoolID");
+                column: "SchoolId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
