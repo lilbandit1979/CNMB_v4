@@ -12,8 +12,8 @@ using Repository;
 namespace Repository.Migrations
 {
     [DbContext(typeof(CNMBContext))]
-    [Migration("20221209182220_CreateDB")]
-    partial class CreateDB
+    [Migration("20221213173919_createDB")]
+    partial class createDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,7 +72,7 @@ namespace Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SchoolID")
+                    b.Property<int?>("SchoolId")
                         .HasColumnType("int");
 
                     b.Property<string>("TeacherPhone")
@@ -81,7 +81,7 @@ namespace Repository.Migrations
 
                     b.HasKey("TeacherId");
 
-                    b.HasIndex("SchoolID");
+                    b.HasIndex("SchoolId");
 
                     b.ToTable("Teacher");
                 });
@@ -100,7 +100,7 @@ namespace Repository.Migrations
                     b.Property<int>("MentorTeacherId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SchoolId")
+                    b.Property<int?>("SchoolID")
                         .HasColumnType("int");
 
                     b.Property<int>("TeamGame")
@@ -110,7 +110,7 @@ namespace Repository.Migrations
 
                     b.HasIndex("MentorTeacherId");
 
-                    b.HasIndex("SchoolId");
+                    b.HasIndex("SchoolID");
 
                     b.ToTable("Team");
                 });
@@ -119,7 +119,7 @@ namespace Repository.Migrations
                 {
                     b.HasOne("Models.School", "School")
                         .WithMany("Teachers")
-                        .HasForeignKey("SchoolID");
+                        .HasForeignKey("SchoolId");
 
                     b.Navigation("School");
                 });
@@ -132,18 +132,18 @@ namespace Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.School", null)
-                        .WithMany("Teams")
-                        .HasForeignKey("SchoolId");
+                    b.HasOne("Models.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolID");
 
                     b.Navigation("Mentor");
+
+                    b.Navigation("School");
                 });
 
             modelBuilder.Entity("Models.School", b =>
                 {
                     b.Navigation("Teachers");
-
-                    b.Navigation("Teams");
                 });
 #pragma warning restore 612, 618
         }

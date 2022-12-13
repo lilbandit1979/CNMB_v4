@@ -27,20 +27,16 @@ namespace Models
         [Required]
         [Key]
         public int TeamId { get; set; }
-
-        public School? school { get; set; } //maybe set a school as well??
         [Required]
         public  Gender Gender { get; set; }
         [Required]
         public TeamType TeamGame { get; set; } //football, hurling etc.
         [Required]
         public Teacher? Mentor { get; set; } //can be null
-        
-        
         ////useful to be able to get the school without querying the ID
         public School? School { get; set; }
 
         //foreign key back to school
-        //public int? SchoolID { get; set; }
+        public int? SchoolID { get; set; }
     }
 }

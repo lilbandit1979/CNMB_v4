@@ -87,7 +87,7 @@ namespace CNMB_v4.Controllers
         {
             _context.AddTeacher(teacher);
             //check this below --might give a better return in Swagger than Ok();
-            return CreatedAtAction("GetTeacher", new { id = teacher.TeacherId }, teacher);
+            return Ok(teacher);
         }
 
         //// DELETE: api/Teachers/5

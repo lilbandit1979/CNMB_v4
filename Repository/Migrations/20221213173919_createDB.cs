@@ -4,7 +4,7 @@
 
 namespace Repository.Migrations
 {
-    public partial class CreateDB : Migration
+    public partial class createDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,14 +34,14 @@ namespace Repository.Migrations
                     SName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TeacherPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsMainRep = table.Column<bool>(type: "bit", nullable: false),
-                    SchoolID = table.Column<int>(type: "int", nullable: true)
+                    SchoolId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teacher", x => x.TeacherId);
                     table.ForeignKey(
-                        name: "FK_Teacher_School_SchoolID",
-                        column: x => x.SchoolID,
+                        name: "FK_Teacher_School_SchoolId",
+                        column: x => x.SchoolId,
                         principalTable: "School",
                         principalColumn: "SchoolId");
                 });
@@ -55,14 +55,14 @@ namespace Repository.Migrations
                     Gender = table.Column<int>(type: "int", nullable: false),
                     TeamGame = table.Column<int>(type: "int", nullable: false),
                     MentorTeacherId = table.Column<int>(type: "int", nullable: false),
-                    SchoolId = table.Column<int>(type: "int", nullable: true)
+                    SchoolID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Team", x => x.TeamId);
                     table.ForeignKey(
-                        name: "FK_Team_School_SchoolId",
-                        column: x => x.SchoolId,
+                        name: "FK_Team_School_SchoolID",
+                        column: x => x.SchoolID,
                         principalTable: "School",
                         principalColumn: "SchoolId");
                     table.ForeignKey(
@@ -74,9 +74,9 @@ namespace Repository.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teacher_SchoolID",
+                name: "IX_Teacher_SchoolId",
                 table: "Teacher",
-                column: "SchoolID");
+                column: "SchoolId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Team_MentorTeacherId",
@@ -84,9 +84,9 @@ namespace Repository.Migrations
                 column: "MentorTeacherId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Team_SchoolId",
+                name: "IX_Team_SchoolID",
                 table: "Team",
-                column: "SchoolId");
+                column: "SchoolID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

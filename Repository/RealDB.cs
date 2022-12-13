@@ -68,6 +68,10 @@ namespace Repository
         public IEnumerable<Teacher> GetAllTeachers()
         {
            return _context.Teacher.ToList();
+            //var ret = _context.Teacher
+            //    .Include(nameof(Teacher.School)) //include on db --gets the school along with teacher
+            //    .ToList();
+            //return ret;//_context.Teacher.ToList();
         }
 
         public School GetSchoolById(int id)
