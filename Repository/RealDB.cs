@@ -136,10 +136,6 @@ namespace Repository
             _context.Team.Add(newTeam);
             _context.SaveChanges();
          }
-//        var author = new Author { FirstName = "William", LastName = "Shakespeare" };
-//        var book = new Book { Title = "Adventures of Huckleberry Finn" };
-//        context.AddRange(author, book);
-//context.SaveChanges();
 
         public IEnumerable<Team> GetAllTeams()
         {

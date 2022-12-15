@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Models
@@ -24,8 +25,8 @@ namespace Models
         //foreign key back to School
         public int SchoolId { get; set; } 
 
-        //useful to be able to get the school without querying the ID
-        //public School? School { get; set; } --taken out 20:22pm
+        
+        
 
     }
 }

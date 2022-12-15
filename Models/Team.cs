@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Models
@@ -33,9 +34,10 @@ namespace Models
         public TeamType TeamGame { get; set; } //football, hurling etc.
         [Required]
         public Teacher? Mentor { get; set; } //can be null
-        //public int TeacherId { get; set; } //not sure about this
-        
+                                             //public int TeacherId { get; set; } //not sure about this
+
         ////useful to be able to get the school without querying the ID
+        
         public School? School { get; set; } //try nullable
 
         //foreign key back to school

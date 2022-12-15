@@ -21,7 +21,7 @@ namespace CNMB_v4.Controllers
         //public StudentMockDBController(IRepository db) //constructor
         //{
         //    _db = db;
-        //} pray!!
+        //} 
 
         public TeachersController(IRepository context)
         {

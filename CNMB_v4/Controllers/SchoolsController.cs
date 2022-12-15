@@ -62,7 +62,7 @@ namespace CNMB_v4.Controllers
                 return Ok(found);
             }
             return NotFound();
-            //_context.UpdateSchool(school);
+            
             
         }
 
@@ -73,7 +73,7 @@ namespace CNMB_v4.Controllers
         public ActionResult<School> PostSchool(School school)
         {
             _context.AddSchool(school);
-            return Ok(school.SchoolId); //check if it can just be Ok();
+            return Ok(school); 
         }
 
         //Delete not needed

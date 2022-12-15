@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Models
@@ -19,9 +20,10 @@ namespace Models
         [Required]
         public string SchoolAddress { get; set; } = "";
         [Required]
-        public string SchoolEircode { get; set; } = ""; 
+        public string SchoolEircode { get; set; } = "";
 
         //list of teachers for a school
+        
         public virtual ICollection<Teacher>? Teachers { get; set; }
         //list of teams for a school
         //public virtual ICollection<Team>? Teams { get; set; } 
