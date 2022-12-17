@@ -30,8 +30,8 @@ namespace Repository
 
         public static List<Team> _teams = new List<Team>()
         {
-            new Team { TeamId=0,Gender=Gender.boys,TeamGame=TeamType.SeniorFootball,Mentor=_teachers.FirstOrDefault(x=>x.TeacherId==1) },
-            new Team { TeamId=1,Gender=Gender.girls,TeamGame=TeamType.U11Camogie,Mentor=_teachers.FirstOrDefault(x=>x.TeacherId==2)}
+            new Team { TeamId=0,Gender=Gender.boys,TeamGame=TeamType.SeniorFootball/*Mentor=_teachers.FirstOrDefault(x=>x.TeacherId==1)*/ }, //16th Dec
+            new Team { TeamId=1,Gender=Gender.girls,TeamGame=TeamType.U11Camogie,/*Mentor=_teachers.FirstOrDefault(x=>x.TeacherId==2)*/}// 16th Dec
             };
         public void AddSchool(School school)
         {
@@ -148,7 +148,7 @@ namespace Repository
                 //found.TeamId = team.TeamId;
                 found.TeamGame = team.TeamGame;
                 found.Gender = team.Gender;
-                found.Mentor = team.Mentor;
+                //found.Mentor = team.Mentor; --16th Dec
             }
         }
   

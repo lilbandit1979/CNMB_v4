@@ -23,7 +23,7 @@ namespace Models
         public bool IsMainRep { get; set; }= false;
 
         //foreign key back to School
-        public int SchoolId { get; set; } 
+        //public int? SchoolId { get; set; } 16th Dec 
 
         
         

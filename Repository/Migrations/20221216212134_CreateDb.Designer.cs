@@ -12,8 +12,8 @@ using Repository;
 namespace Repository.Migrations
 {
     [DbContext(typeof(CNMBContext))]
-    [Migration("20221213205604_createDB")]
-    partial class createDB
+    [Migration("20221216212134_CreateDb")]
+    partial class CreateDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,7 +72,7 @@ namespace Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SchoolId")
+                    b.Property<int?>("SchoolId")
                         .HasColumnType("int");
 
                     b.Property<string>("TeacherPhone")
@@ -97,20 +97,16 @@ namespace Repository.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
-                    b.Property<int>("MentorTeacherId")
+                    b.Property<int>("SchoolId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SchoolId")
+                    b.Property<int>("TeacherId")
                         .HasColumnType("int");
 
                     b.Property<int>("TeamGame")
                         .HasColumnType("int");
 
                     b.HasKey("TeamId");
-
-                    b.HasIndex("MentorTeacherId");
-
-                    b.HasIndex("SchoolId");
 
                     b.ToTable("Team");
                 });
@@ -119,26 +115,7 @@ namespace Repository.Migrations
                 {
                     b.HasOne("Models.School", null)
                         .WithMany("Teachers")
-                        .HasForeignKey("SchoolId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Models.Team", b =>
-                {
-                    b.HasOne("Models.Teacher", "Mentor")
-                        .WithMany()
-                        .HasForeignKey("MentorTeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Models.School", "School")
-                        .WithMany()
                         .HasForeignKey("SchoolId");
-
-                    b.Navigation("Mentor");
-
-                    b.Navigation("School");
                 });
 
             modelBuilder.Entity("Models.School", b =>

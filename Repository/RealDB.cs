@@ -132,7 +132,7 @@ namespace Repository
         public void AddTeam(Team team)
         {
             //var mentor = _context.Teacher.FirstOrDefault(m => m.TeacherId == teacher.TeacherId);
-            var newTeam = new Team { Gender = team.Gender, TeamGame = team.TeamGame, Mentor = team.Mentor };
+            var newTeam = new Team { Gender = team.Gender, TeamGame = team.TeamGame, TeacherId = team.TeacherId, SchoolId = team.SchoolId }; //Mentor = team.Mentor }; --taken out
             _context.Team.Add(newTeam);
             _context.SaveChanges();
          }
@@ -159,7 +159,7 @@ namespace Repository
             {
                 found.TeamGame = team.TeamGame;
                 found.Gender = team.Gender;
-                found.Mentor = team.Mentor;
+                //found.Mentor = team.Mentor; 16th Dec
 
                 _context.Team.Update(found); //check this.
                 _context.SaveChanges();

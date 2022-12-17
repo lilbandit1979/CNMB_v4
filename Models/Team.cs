@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -50,7 +51,7 @@ namespace Models
         [Required]
         public TeamType TeamGame { get; set; } //football, hurling etc.
         [Required]
-        public Teacher? Mentor { get; set; } //can be null 
+        //public Teacher? Mentor { get; set; } //can be null --16thDec taken out also from RealDb
         public int TeacherId { get; set; }
         public int SchoolId { get; set; }
     }

@@ -4,7 +4,7 @@
 
 namespace Repository.Migrations
 {
-    public partial class createDB : Migration
+    public partial class CreateDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,6 +25,22 @@ namespace Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Team",
+                columns: table => new
+                {
+                    TeamId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Gender = table.Column<int>(type: "int", nullable: false),
+                    TeamGame = table.Column<int>(type: "int", nullable: false),
+                    TeacherId = table.Column<int>(type: "int", nullable: false),
+                    SchoolId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Team", x => x.TeamId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Teacher",
                 columns: table => new
                 {
@@ -34,7 +50,7 @@ namespace Repository.Migrations
                     SName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TeacherPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsMainRep = table.Column<bool>(type: "bit", nullable: false),
-                    SchoolId = table.Column<int>(type: "int", nullable: false)
+                    SchoolId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,60 +59,22 @@ namespace Repository.Migrations
                         name: "FK_Teacher_School_SchoolId",
                         column: x => x.SchoolId,
                         principalTable: "School",
-                        principalColumn: "SchoolId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Team",
-                columns: table => new
-                {
-                    TeamId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Gender = table.Column<int>(type: "int", nullable: false),
-                    TeamGame = table.Column<int>(type: "int", nullable: false),
-                    MentorTeacherId = table.Column<int>(type: "int", nullable: false),
-                    SchoolId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Team", x => x.TeamId);
-                    table.ForeignKey(
-                        name: "FK_Team_School_SchoolId",
-                        column: x => x.SchoolId,
-                        principalTable: "School",
                         principalColumn: "SchoolId");
-                    table.ForeignKey(
-                        name: "FK_Team_Teacher_MentorTeacherId",
-                        column: x => x.MentorTeacherId,
-                        principalTable: "Teacher",
-                        principalColumn: "TeacherId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Teacher_SchoolId",
                 table: "Teacher",
                 column: "SchoolId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Team_MentorTeacherId",
-                table: "Team",
-                column: "MentorTeacherId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Team_SchoolId",
-                table: "Team",
-                column: "SchoolId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Team");
+                name: "Teacher");
 
             migrationBuilder.DropTable(
-                name: "Teacher");
+                name: "Team");
 
             migrationBuilder.DropTable(
                 name: "School");
