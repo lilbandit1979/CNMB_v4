@@ -64,22 +64,7 @@ namespace CNMB_v4.Controllers
             return Ok();
         }
 
-        //[HttpPut("{id}")] // works ---Edit school only
-        //public ActionResult<School> PutSchool(School school, int id)
-        //{
-        //    if (id != school.SchoolId)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    var found = _context.GetSchoolById(id);
-        //    if (found != null)
-        //    {
-        //        _context.UpdateSchool(found);
-        //    }
-        //    // _context.UpdateSchool(school);
-        //    return Ok();
-        //}
-
+        
         // POST: api/Teachers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost] //works --teacher only

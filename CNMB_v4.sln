@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CNMB_v4", "CNMB_v4\CNMB_v4.csproj", "{DCF83C56-1F18-4BCA-9884-ECE7C456D2FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CNMB_v4", "CNMB_v4\CNMB_v4.csproj", "{DCF83C56-1F18-4BCA-9884-ECE7C456D2FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{3F6F4BFF-5B14-409C-9600-81C9660C4E40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{3F6F4BFF-5B14-409C-9600-81C9660C4E40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{96830BE9-9FB6-4AC8-87F7-1FCE82CA84E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{96830BE9-9FB6-4AC8-87F7-1FCE82CA84E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CNMB_Tests", "CNMB_Tests\CNMB_Tests.csproj", "{2C5EA4E0-8993-49F7-880B-DF274314283A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{96830BE9-9FB6-4AC8-87F7-1FCE82CA84E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96830BE9-9FB6-4AC8-87F7-1FCE82CA84E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96830BE9-9FB6-4AC8-87F7-1FCE82CA84E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C5EA4E0-8993-49F7-880B-DF274314283A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C5EA4E0-8993-49F7-880B-DF274314283A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C5EA4E0-8993-49F7-880B-DF274314283A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C5EA4E0-8993-49F7-880B-DF274314283A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
