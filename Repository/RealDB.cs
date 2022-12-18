@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,7 +47,6 @@ namespace Repository
                 _context.School.Remove(found);
                 _context.SaveChanges();
             }
-            throw new Exception("School not found");
         }
 
         public void DeleteTeacher(int id)
@@ -57,7 +57,6 @@ namespace Repository
                 _context.Teacher.Remove(found);
                 _context.SaveChanges();
             }
-            throw new Exception("Teacher not found");
         }
 
         public IEnumerable<School> GetAllSchools()
@@ -77,24 +76,14 @@ namespace Repository
         public School GetSchoolById(int id)
         {
             var found = _context.School.Find(id);
-            {
-                if (found != null)
-                {
-                    return found;
-                }
-                throw new Exception("School not found");
-            }
+                return found;
         }
 
         public Teacher GetTeacherById(int id)
         {
             var found = _context.Teacher.Find(id);
-            if(found!=null)
-            {
-                return found;
-            }
-            throw new Exception("Teacher not found");
-            
+            return found;
+ 
         }
 
         public void UpdateSchool(School school)

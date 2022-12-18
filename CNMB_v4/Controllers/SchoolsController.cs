@@ -14,7 +14,7 @@ namespace CNMB_v4.Controllers
     [ApiController]
     public class SchoolsController : ControllerBase
     {
-        private readonly IRepository _context = default!;  //Check this on monday night
+        private readonly IRepository _context = default!; 
         //private readonly IRepository _repo;
 
         //add in IRepository stuff here: See below
@@ -49,7 +49,7 @@ namespace CNMB_v4.Controllers
         }
 
         [HttpPut("{id}")] // works ---Edit school only
-        public ActionResult<School> PutSchool(School school, int id)
+        public ActionResult<School> PutSchool(int id, School school)
         {
             if (id != school.SchoolId)
             {
@@ -72,28 +72,29 @@ namespace CNMB_v4.Controllers
         [HttpPost]
         public ActionResult<School> PostSchool(School school)
         {
+            if(school.SchoolId>0)
+            {
+                _context.UpdateSchool(school);
+                return Ok(school);
+            }
             _context.AddSchool(school);
             return Ok(school); 
         }
 
-        //Delete not needed
-        //// DELETE: api/Schools/5 
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteSchool(int id)
-        //{
-        //    //var school = await _context.School.FindAsync(id);
-        //    var school = _context.GetSchoolById(id);
-        //    if (school != null)
-        //    {
-        //        _context.DeleteSchool(school);
-        //    }
-
-        //    //_context.School.Remove(school);
-        //    //await _context.SaveChangesAsync();
+       
+        // DELETE: api/Schools/5 
+        [HttpDelete("{id}")]
+        public ActionResult DeleteSchool(int id)
+        {
             
-        //    return NotFound();
-        //    //return NoContent();
-        //}
+            var school = _context.GetSchoolById(id);
+            if (school != null)
+            {
+                _context.DeleteSchool(school.SchoolId);
+                return Ok();
+            }
+            return NotFound();
+        }
 
         //private bool SchoolExists(int id)
         //{
